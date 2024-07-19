@@ -36,8 +36,9 @@ jobs:
   publish-slsa:
     needs: build
     uses: slsa-framework/slsa-github-generator/.github/workflows/builder_maven_slsa3.yml@v2.0.0
+    secrets: inherit
     with:
-      artifact-path: 'target/*.jar'
-      builder-id: 'github_actions'
-      build-type: 'maven'
-      build-args: 'mvn verify'
+      build_artifacts: 'target/*.jar'
+      builder: 'github_actions'
+      build_type: 'maven'
+      build_cmd: 'mvn verify'
