@@ -33,11 +33,11 @@ jobs:
       - name: Build with Maven
         run: mvn --batch-mode --update-snapshots verify
 
-      - name: Publish SLSA Provenance Metadata
-
-        uses: slsa-framework/slsa-github-generator/.github/workflows/builder_maven_slsa3.yml@v2.0.0
-        with:
-          artifact-path: 'target/*.jar'
-          builder-id: 'github_actions'
-          build-type: 'maven'
-          build-args: 'mvn verify'
+  publish-slsa:
+    needs: build
+    uses: slsa-framework/slsa-github-generator/.github/workflows/builder_maven_slsa3.yml@v2.0.0
+    with:
+      artifact-path: 'target/*.jar'
+      builder-id: 'github_actions'
+      build-type: 'maven'
+      build-args: 'mvn verify'
