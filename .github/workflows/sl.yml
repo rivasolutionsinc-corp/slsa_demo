@@ -34,11 +34,10 @@ jobs:
         run: mvn --batch-mode --update-snapshots verify
 
       - name: Publish SLSA Provenance Metadata
-        # 这里需要一个实际的Action来生成并上传SLSA证明，目前可能需要自定义实现或等待社区提供
-        # 假设存在一个名为generate-and-publish-slsa的Action
+
         uses: slsa-framework/slsa-github-generator/.github/workflows/builder_maven_slsa3.yml@v2.0.0
         with:
-          artifact-path: 'target/*.jar' # 指定构建输出的路径
-          builder-id: 'github_actions' # 构建者的唯一标识
-          build-type: 'maven' # 构建类型
-          build-args: 'mvn verify' # 构建命令
+          artifact-path: 'target/*.jar'
+          builder-id: 'github_actions'
+          build-type: 'maven'
+          build-args: 'mvn verify'
